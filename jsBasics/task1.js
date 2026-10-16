@@ -1,0 +1,10 @@
+let userName = 'Helen';
+console.log(name1);
+let age = 17;
+console.log(age);
+let isUserAdult = true;
+console.log(isUserAdult);
+let value = null;
+console.log(value);
+let undefinedType;
+console.log(undefinedType);
