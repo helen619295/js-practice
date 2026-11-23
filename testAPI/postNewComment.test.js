@@ -1,4 +1,5 @@
 const axios = require ('axios');
+const postComController = require('./controllers/postComController');
 
 const newComment = {
     postId: 101,
@@ -8,12 +9,12 @@ const newComment = {
 };
 
 test('Add new comment', async () => {
-    const response = await axios.post('https://jsonplaceholder.typicode.com/comments', newComment);
-
+    const response = await postComController.postComment(newComment);
+    const createdComment = response.data;
     console.log('status:', response.status);
-    console.log('Added comment:', response.data);
+    console.log('Added comment:', createdComment);
 
     expect(response.status).toBe(201);
-    expect(response.data).toMatchObject(newComment);
     expect(response.data).toHaveProperty('id');
+    expect(createdComment).toMatchObject(newComment);
 });

@@ -1,4 +1,5 @@
 const axios = require('axios');
+const postComController = require('./controllers/postComController');
 
 const newPost = {
     userId: 1,
@@ -7,11 +8,13 @@ const newPost = {
 };
 
 test('Is new post successfully added?', async () => {
-   return axios.post('https://jsonplaceholder.typicode.com/posts', newPost)
+   return postComController.addPost(newPost)
     .then(response => {
+        const createdPost = response.data;
         expect(response.status).toBe(201);
-        expect(response.data).toMatchObject(newPost);
-        console.log(newPost);
+        console.log(response.status);
+        expect(createdPost).toMatchObject(newPost);
+        console.log(createdPost);
     })
     .catch(error => {
         console.error('Request failed:', error.message);
